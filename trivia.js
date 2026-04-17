@@ -10,7 +10,7 @@ const rl = readline.createInterface({
 const questions = [
   {
     question: "What is 5 + 3?",
-  options: ["A. 6", "B. 8", "C. 10"],
+    options: ["A. 6", "B. 8", "C. 10"],
     answer: "B"
   },
   {
@@ -32,10 +32,11 @@ const questions = [
 let score = 0;
 let currentQuestionIndex = 0;
 let totalTime = 30000; // 30 seconds
+let timer; // ✅ FIX: store timer reference
 
 // Start game
 function startGame() {
-  console.log(" Welcome to Trivia CLI Game!");
+  console.log("🎮 Welcome to Trivia CLI Game!");
   console.log("Answer the questions before time runs out!\n");
 
   startTimer();
@@ -44,8 +45,8 @@ function startGame() {
 
 // Timer
 function startTimer() {
-  setTimeout(() => {
-    console.log("\n Time is up!");
+  timer = setTimeout(() => {
+    console.log("\n⏰ Time is up!");
     endGame();
   }, totalTime);
 }
@@ -76,10 +77,10 @@ function checkAnswer(userAnswer) {
   const correctAnswer = questions[currentQuestionIndex].answer;
 
   if (userAnswer === correctAnswer) {
-    console.log(" Correct!");
+    console.log("✅ Correct!");
     score++;
   } else {
-    console.log(` Incorrect! Correct answer: ${correctAnswer}`);
+    console.log(`❌ Incorrect! Correct answer: ${correctAnswer}`);
   }
 
   currentQuestionIndex++;
@@ -88,7 +89,9 @@ function checkAnswer(userAnswer) {
 
 // End game
 function endGame() {
-  console.log("\n Game Over!");
+  clearTimeout(timer); // ✅ FIX: stop timer to prevent duplicate ending
+
+  console.log("\n🏁 Game Over!");
   console.log(`Final Score: ${score} / ${questions.length}`);
 
   rl.close();
