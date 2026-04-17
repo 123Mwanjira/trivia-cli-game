@@ -32,11 +32,11 @@ const questions = [
 let score = 0;
 let currentQuestionIndex = 0;
 let totalTime = 30000; // 30 seconds
-let timer; // ✅ FIX: store timer reference
+let timer; //  FIX: store timer reference
 
 // Start game
 function startGame() {
-  console.log("🎮 Welcome to Trivia CLI Game!");
+  console.log(" Welcome to Trivia CLI Game!");
   console.log("Answer the questions before time runs out!\n");
 
   startTimer();
@@ -46,7 +46,7 @@ function startGame() {
 // Timer
 function startTimer() {
   timer = setTimeout(() => {
-    console.log("\n⏰ Time is up!");
+    console.log("\n Time is up!");
     endGame();
   }, totalTime);
 }
@@ -77,10 +77,10 @@ function checkAnswer(userAnswer) {
   const correctAnswer = questions[currentQuestionIndex].answer;
 
   if (userAnswer === correctAnswer) {
-    console.log("✅ Correct!");
+    console.log(" Correct!");
     score++;
   } else {
-    console.log(`❌ Incorrect! Correct answer: ${correctAnswer}`);
+    console.log(` Incorrect! Correct answer: ${correctAnswer}`);
   }
 
   currentQuestionIndex++;
@@ -89,9 +89,9 @@ function checkAnswer(userAnswer) {
 
 // End game
 function endGame() {
-  clearTimeout(timer); // ✅ FIX: stop timer to prevent duplicate ending
+  clearTimeout(timer); //  FIX: stop timer to prevent duplicate ending
 
-  console.log("\n🏁 Game Over!");
+  console.log("\n Game Over!");
   console.log(`Final Score: ${score} / ${questions.length}`);
 
   rl.close();
